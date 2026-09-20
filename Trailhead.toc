@@ -13,9 +13,9 @@
 
 # Locales
 locales\enUS.lua
+locales\frFR.lua
 
 # Core
-src\core\Init.lua
 src\core\Events.lua
 src\core\Database.lua
 
@@ -32,5 +32,8 @@ src\features\RouteOverlay.lua
 # Data
 data\init.lua
 
-# Slash commands (loads last)
+# Slash commands
 src\Slash.lua
+
+# Bootstrap
+src\core\Init.lua

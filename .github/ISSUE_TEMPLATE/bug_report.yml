@@ -50,7 +50,6 @@ body:
     attributes:
       label: Screenshots / Video
       description: If applicable, drag and drop images or a link to a clip.
-      placeholder: "Drag and drop here, or paste a URL."
     validations:
       required: false
 
@@ -58,7 +57,6 @@ body:
     id: addon-version
     attributes:
       label: Trailhead version
-      description: Shown in the addon list, or run `/th version` once implemented. Found in `Trailhead.toc` as `## Version:`.
       placeholder: "0.1.0-alpha"
     validations:
       required: true
@@ -67,7 +65,7 @@ body:
     id: wow-version
     attributes:
       label: WoW version
-      description: Shown in the bottom-left of the character select screen, or on the in-game login screen.
+      description: Shown in the bottom-left of the character select screen.
       placeholder: "11.0.2 (retail)"
     validations:
       required: true
@@ -76,7 +74,6 @@ body:
     id: locale
     attributes:
       label: Client locale
-      description: Which language is your game client set to?
       options:
         - enUS (English - US)
         - enGB (English - EU)
@@ -101,8 +98,7 @@ body:
       description: |
         List any addons that touch professions, bags, the map, or waypoints.
         If you can reproduce the bug with only Trailhead enabled, say so — that's a huge clue.
-      placeholder: |
-        TomTom, TradeSkillMaster, Bagnon, WeakAuras
+      placeholder: "TomTom, TradeSkillMaster, Bagnon, WeakAuras"
     validations:
       required: false
 
@@ -114,8 +110,7 @@ body:
         Enable error display with `/console scriptErrors 1`, then reproduce the bug.
         Paste any red error text here, or screenshot the error frame.
       render: shell
-      placeholder: |
-        1x Trailhead/src/ui/MainFrame.lua:42: attempt to index a nil value
+      placeholder: "1x Trailhead/src/ui/MainFrame.lua:42: attempt to index a nil value"
     validations:
       required: false
 
