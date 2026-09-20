@@ -16,3 +16,11 @@ ns.Events:Register("PLAYER_LOGIN", function()
     ns.MainFrame:Init()
     ns:Print(ns.version .. " " .. ns:Str("MSG_LOADED"))
 end)
+
+-- ── CHAT_MSG_SKILL: refresh guide on skill-up ──────────────────────────────
+ns.Events:Register("CHAT_MSG_SKILL", function()
+    if ns.CraftingGuide.current then
+        ns.CraftingGuide:Refresh()
+        ns.MainFrame:RefreshRows()
+    end
+end)

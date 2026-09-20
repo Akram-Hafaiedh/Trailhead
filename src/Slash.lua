@@ -33,8 +33,11 @@ local function handleCommand(msg)
         ns:Print(ns.version)
 
     elseif cmd == "craft" then
-        -- TODO(phase-2): load crafting guide by name (rest)
-        ns:Print("Crafting guides arrive in Phase 2. (requested: " .. tostring(rest) .. ")")
+        if rest == "" then
+            ns:Print("Usage: /th craft <profession>")
+        else
+            ns.CraftingGuide:Load(rest)
+        end
 
     elseif cmd == "farm" then
         -- TODO(phase-3): load gathering route by name (rest)

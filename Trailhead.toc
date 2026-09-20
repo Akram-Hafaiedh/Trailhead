@@ -26,11 +26,13 @@ src\ui\StepRow.lua
 src\ui\RouteRow.lua
 
 # Features
+src\features\CraftingGuide.lua
 src\features\ShoppingList.lua
 src\features\RouteOverlay.lua
 
 # Data
 data\init.lua
+data\crafting\Tailoring.lua
 
 # Slash commands
 src\Slash.lua

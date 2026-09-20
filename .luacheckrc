@@ -13,10 +13,12 @@ globals = {
 -- WoW API — read-only from our perspective
 read_globals = {
     "C_AddOns",
+    "C_TradeSkillUI",
     "CreateFrame",
     "DEFAULT_CHAT_FRAME",
     "GetAddOnMetadata",
     "GetLocale",
+    "GetProfessionInfo",
     "UIParent",
     "UISpecialFrames",
     "tinsert",

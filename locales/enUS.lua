@@ -35,7 +35,11 @@ L["SLASH_HELP_RESET_POS"] = "  /th reset-position — Recenter the window"
 -- ── Main window ───────────────────────────────────────────────────────────
 L["WINDOW_TITLE"] = "Trailhead"
 L["WINDOW_BODY_PLACEHOLDER"] = "Phase 1 skeleton — no guides loaded yet.\n\nCheck back soon."
--- ── TODO(phase-2): crafting guide strings ─────────────────────────────────
+-- ── Crafting guide ─────────────────────────────────────────────────────────
+L["CRAFT_GUIDE_NOT_FOUND"] = "No guide found for |cffffff00%s|r."
+L["CRAFT_GUIDE_LOADED"]    = "Loaded %s guide (skill %d/%d)."
+L["CRAFT_GUIDE_NO_SKILL"]  = "You haven't learned %s on this character."
+
 -- ── TODO(phase-3): gathering route strings ────────────────────────────────
 -- ── TODO(phase-4): shopping list strings ──────────────────────────────────
 -- ── TODO(phase-5): knowledge / spec strings ───────────────────────────────

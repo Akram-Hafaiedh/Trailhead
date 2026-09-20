@@ -36,7 +36,9 @@ L["SLASH_HELP_RESET_POS"] = "  /th reset-position - Recentrer la fenetre"
 -- ── Main window ───────────────────────────────────────────────────────────
 L["WINDOW_TITLE"] = "Trailhead"
 L["WINDOW_BODY_PLACEHOLDER"] = "Squelette de la phase 1 — aucun guide chargé pour l'instant.\n\nÀ bientôt."
--- ── TODO(phase-2): crafting guide strings ─────────────────────────────────
+L["CRAFT_GUIDE_NOT_FOUND"] = "Aucun guide trouvé pour |cffffff00%s|r."
+L["CRAFT_GUIDE_LOADED"]    = "Guide %s chargé (compétence %d/%d)."
+L["CRAFT_GUIDE_NO_SKILL"]  = "Vous n'avez pas appris %s avec ce personnage"
 -- ── TODO(phase-3): gathering route strings ────────────────────────────────
 -- ── TODO(phase-4): shopping list strings ──────────────────────────────────
 -- ── TODO(phase-5): knowledge / spec strings ───────────────────────────────
