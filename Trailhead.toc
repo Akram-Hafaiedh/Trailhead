@@ -1,0 +1,36 @@
+## Interface: 120100
+## Title: Trailhead
+## Notes: Crafting guides and gathering routes for every profession.
+## Author: Akram-Hafaiedh (Mugiwara bøy)
+## Version: 0.1.0-alpha
+## SavedVariables: TrailheadDB
+## X-Category: Professions
+## X-Website: https://github.com/Akram-Hafaiedh/Trailhead
+## X-License-Identifier: MIT
+## X-Curse-Project-ID: 000000
+## X-Wago-ID: xxxxxxxx
+## OptionalDeps: TomTom
+
+# Locales
+locales\enUS.lua
+
+# Core
+src\core\Init.lua
+src\core\Events.lua
+src\core\Database.lua
+
+# UI
+src\ui\Theme.lua
+src\ui\MainFrame.lua
+src\ui\StepRow.lua
+src\ui\RouteRow.lua
+
+# Features
+src\features\ShoppingList.lua
+src\features\RouteOverlay.lua
+
+# Data
+data\init.lua
+
+# Slash commands (loads last)
+src\Slash.lua

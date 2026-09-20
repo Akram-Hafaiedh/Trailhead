@@ -1,0 +1,140 @@
+name: 🐛 Bug Report
+description: Something isn't working as expected
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug! The more detail you give,
+        the faster we can reproduce and fix it.
+
+        **Before you continue:**
+        - Make sure you're on the latest Trailhead release.
+        - Check [existing issues](https://github.com/yourname/Trailhead/issues) — someone may have already reported this.
+        - Try disabling other addons to rule out conflicts.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear, concise description of what's wrong.
+      placeholder: "When I open the crafting guide, the step list shows..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: How do we make this happen? Be as specific as possible.
+      placeholder: |
+        1. Open Trailhead with /th
+        2. Click on 'Mining'
+        3. Click 'Start Route'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+      placeholder: "The route overlay should appear with the first waypoint highlighted."
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / Video
+      description: If applicable, drag and drop images or a link to a clip.
+      placeholder: "Drag and drop here, or paste a URL."
+    validations:
+      required: false
+
+  - type: input
+    id: addon-version
+    attributes:
+      label: Trailhead version
+      description: Shown in the addon list, or run `/th version` once implemented. Found in `Trailhead.toc` as `## Version:`.
+      placeholder: "0.1.0-alpha"
+    validations:
+      required: true
+
+  - type: input
+    id: wow-version
+    attributes:
+      label: WoW version
+      description: Shown in the bottom-left of the character select screen, or on the in-game login screen.
+      placeholder: "11.0.2 (retail)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Client locale
+      description: Which language is your game client set to?
+      options:
+        - enUS (English - US)
+        - enGB (English - EU)
+        - deDE (German)
+        - frFR (French)
+        - esES (Spanish - EU)
+        - esMX (Spanish - LatAm)
+        - ruRU (Russian)
+        - zhCN (Chinese - Simplified)
+        - zhTW (Chinese - Traditional)
+        - koKR (Korean)
+        - ptBR (Portuguese - Brazil)
+        - itIT (Italian)
+        - Other (describe in Additional Context)
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-addons
+    attributes:
+      label: Other addons
+      description: |
+        List any addons that touch professions, bags, the map, or waypoints.
+        If you can reproduce the bug with only Trailhead enabled, say so — that's a huge clue.
+      placeholder: |
+        TomTom, TradeSkillMaster, Bagnon, WeakAuras
+    validations:
+      required: false
+
+  - type: textarea
+    id: lua-errors
+    attributes:
+      label: Lua errors
+      description: |
+        Enable error display with `/console scriptErrors 1`, then reproduce the bug.
+        Paste any red error text here, or screenshot the error frame.
+      render: shell
+      placeholder: |
+        1x Trailhead/src/ui/MainFrame.lua:42: attempt to index a nil value
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Final checklist
+      options:
+        - label: I am running the latest Trailhead release
+          required: true
+        - label: I searched existing issues and this isn't a duplicate
+          required: true
+        - label: I've disabled other addons (or confirmed the bug still occurs with them enabled)
+          required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else that might help us track this down.
+    validations:
+      required: false

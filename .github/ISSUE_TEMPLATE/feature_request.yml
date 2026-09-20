@@ -1,0 +1,82 @@
+name: 💡 Feature Request
+description: Suggest an idea for Trailhead
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a feature! The more detail you give,
+        the easier it is to evaluate and prioritize.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear, concise description of what the problem is.
+      placeholder: "I'm always frustrated when..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: What do you want to happen? Be specific.
+      placeholder: "A shopping list panel that..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area does this touch?
+      multiple: true
+      options:
+        - Crafting guides
+        - Gathering routes
+        - Shopping list
+        - Knowledge Point tracker
+        - Specialization advisor
+        - UI / theming
+        - Localization
+        - Slash commands / options
+        - Packaging / distribution
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: Any other approaches, or addons/websites that already do this well.
+    validations:
+      required: false
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups / examples
+      description: Sketches, screenshots, or links.
+      placeholder: "Drag and drop images here."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Would you be willing to contribute this?
+      options:
+        - label: Yes, I can submit a PR
+        - label: Yes, I can help test
+        - label: Yes, I can help with data (guides/routes)
+        - label: No, just suggesting
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Anything else worth knowing.
+    validations:
+      required: false

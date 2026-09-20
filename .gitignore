@@ -1,0 +1,16 @@
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# WoW
+*.zip
+*.bak
+
+# Packager output
+releases/
+.packager/
+
+# OS
+.DS_Store
+Thumbs.db

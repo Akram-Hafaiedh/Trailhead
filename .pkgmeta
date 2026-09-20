@@ -1,0 +1,22 @@
+# .pkgmeta — CurseForge / BigWigs Packager configuration
+# Docs: https://github.com/BigWigsMods/packager
+
+enable-nolib-creation: no
+
+ignore:
+  - .github
+  - .editorconfig
+  - .gitignore
+  - .luacheckrc
+  - .pkgmeta
+  - CODE_OF_CONDUCT.md
+  - CONTRIBUTING.md
+  - README.md
+  - ROADMAP.md
+  - CHANGELOG.md
+  - LICENSE
+  - assets/logo.png
+
+# Move the .toc into the zip root under the correct folder name.
+# The packager does this automatically — the folder inside the zip
+# will be named "Trailhead" (matching the .toc filename).
