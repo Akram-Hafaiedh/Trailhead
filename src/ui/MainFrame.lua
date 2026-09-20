@@ -46,6 +46,22 @@ function MainFrame:Init()
     title:SetTextColor(accent[1], accent[2], accent[3], accent[4])
     f.title = title
 
+        -- ── Header strip (shows loaded guide name + skill) ─────────────────────
+    local header = CreateFrame("Frame", nil, f, "BackdropTemplate")
+    header:SetPoint("TOPLEFT",  titleBar, "BOTTOMLEFT",  0, 0)
+    header:SetPoint("TOPRIGHT", titleBar, "BOTTOMRIGHT", 0, 0)
+    header:SetHeight(24)
+    header:Hide()
+    ns.Theme:ApplyBackdrop(header, "panelAlt")
+    f.header = header
+
+    local headerText = header:CreateFontString(nil, "OVERLAY", ns.Theme.Fonts.body)
+    headerText:SetPoint("LEFT", 12, 0)
+    headerText:SetPoint("RIGHT", -12, 0)
+    headerText:SetJustifyH("LEFT")
+    headerText:SetTextColor(accent[1], accent[2], accent[3], accent[4])
+    f.headerText = headerText
+
     local close = CreateFrame("Button", nil, titleBar, "UIPanelCloseButton")
     close:SetPoint("RIGHT", -2, 0)
     f.closeButton = close
@@ -63,7 +79,7 @@ function MainFrame:Init()
 
     -- ── Scroll frame (shown when a guide is loaded) ────────────────────────
     local scroll = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", titleBar, "BOTTOMLEFT", 8, -8)
+    scroll:SetPoint("TOPLEFT", header, "BOTTOMLEFT", 8, -8)
     scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -30, 8)
     scroll:Hide()
     f.scroll = scroll
@@ -87,9 +103,11 @@ function MainFrame:Toggle()
 end
 
 --- Show the scrollable guide view.
-function MainFrame:ShowGuide()
+function MainFrame:ShowGuide(headerText)
     local f = self.frame or self:Init()
     f.body:Hide()
+    f.header:Show()
+    f.headerText:SetText(headerText or "")
     f.scroll:Show()
     self:RefreshRows()
     f:Show()
@@ -99,6 +117,7 @@ end
 function MainFrame:HideGuide()
     local f = self.frame
     if not f then return end
+    f.header:Hide()
     f.scroll:Hide()
     f.body:Show()
 end

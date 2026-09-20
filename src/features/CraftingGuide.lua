@@ -39,7 +39,12 @@ function CraftingGuide:Load(key)
         ))
     end
 
-    ns.MainFrame:ShowGuide()
+    local header = guide.name
+    if self.current.skillLevel then
+        header = string.format("%s — %d/%d",
+            guide.name, self.current.skillLevel, guide.maxSkill)
+    end
+    ns.MainFrame:ShowGuide(header)
     return true
 end
 
