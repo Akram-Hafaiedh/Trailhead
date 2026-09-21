@@ -35,5 +35,13 @@ L["WINDOW_BODY_PLACEHOLDER"] = "Squelette de la phase 1 — aucun guide chargé 
 L["CRAFT_GUIDE_NOT_FOUND"] = "Aucun guide trouvé pour |cffffff00%s|r."
 L["CRAFT_GUIDE_LOADED"]    = "Guide %s chargé (compétence %d/%d)."
 L["CRAFT_GUIDE_NO_SKILL"]  = "Vous n'avez pas appris %s avec ce personnage."
--- ── TODO(phase-4): shopping list strings ──────────────────────────────────
+-- ── Shopping list ──────────────────────────────────────────────────────────
+L["TAB_STEPS"]         = "Étapes"
+L["TAB_SHOPPING"]      = "Liste de courses"
+L["SHOPPING_EMPTY"]    = "Rien à acheter — vous avez terminé !"
+L["SHOPPING_NO_GUIDE"] = "Chargez d'abord un guide de métier (/th craft couture)."
+
+-- ── Slash help ─────────────────────────────────────────────────────────────
+L["SLASH_HELP_LIST"]   = "  /th list       — Ouvrir la liste de courses"
+
 -- ── TODO(phase-5): knowledge / spec strings ───────────────────────────────

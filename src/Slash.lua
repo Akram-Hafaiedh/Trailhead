@@ -9,6 +9,7 @@ local function printHelp()
     ns:Print(ns:Str("SLASH_HELP_HEADER"))
     ns:Print(ns:Str("SLASH_HELP_TOGGLE"))
     ns:Print(ns:Str("SLASH_HELP_CRAFT"))
+    ns:Print(ns:Str("SLASH_HELP_LIST"))
     ns:Print(ns:Str("SLASH_HELP_OPTIONS"))
     ns:Print(ns:Str("SLASH_HELP_RESET"))
     ns:Print(ns:Str("SLASH_HELP_VERSION"))
@@ -34,6 +35,14 @@ local function handleCommand(msg)
             ns:Print("Usage: /th craft <profession>")
         else
             ns.CraftingGuide:Load(rest)
+        end
+
+    elseif cmd == "list" then
+        if ns.CraftingGuide.current then
+            ns.MainFrame:ShowGuide(ns.MainFrame.headerText:GetText())
+            ns.MainFrame:SetActiveTab("shopping")
+        else
+            ns:Print(ns:Str("SHOPPING_NO_GUIDE"))
         end
 
     elseif cmd == "options" then

@@ -38,5 +38,13 @@ L["WINDOW_BODY_PLACEHOLDER"] = "Phase 1 skeleton — no guides loaded yet.\n\nCh
 L["CRAFT_GUIDE_NOT_FOUND"] = "No guide found for |cffffff00%s|r."
 L["CRAFT_GUIDE_LOADED"]    = "Loaded %s guide (skill %d/%d)."
 L["CRAFT_GUIDE_NO_SKILL"]  = "You haven't learned %s on this character."
--- ── TODO(phase-4): shopping list strings ──────────────────────────────────
+
+-- ── Shopping list ──────────────────────────────────────────────────────────
+L["TAB_STEPS"]         = "Steps"
+L["TAB_SHOPPING"]      = "Shopping List"
+L["SHOPPING_EMPTY"]    = "Nothing to shop for — you're done!"
+L["SHOPPING_NO_GUIDE"] = "Load a crafting guide first (/th craft tailoring)."
+
+-- ── Slash help ─────────────────────────────────────────────────────────────
+L["SLASH_HELP_LIST"]   = "  /th list       — Open the shopping list"
 -- ── TODO(phase-5): knowledge / spec strings ───────────────────────────────

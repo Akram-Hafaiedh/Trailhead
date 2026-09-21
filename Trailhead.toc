@@ -21,8 +21,9 @@ src\core\Database.lua
 
 # UI
 src\ui\Theme.lua
-src\ui\MainFrame.lua
 src\ui\StepRow.lua
+src\ui\ShoppingRow.lua
+src\ui\MainFrame.lua
 
 # Features
 src\features\CraftingGuide.lua

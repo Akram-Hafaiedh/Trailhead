@@ -62,6 +62,66 @@ function MainFrame:Init()
     headerText:SetTextColor(accent[1], accent[2], accent[3], accent[4])
     f.headerText = headerText
 
+
+    -- ── Tab bar (Steps / Shopping List) ────────────────────────────────────
+    local tabBar = CreateFrame("Frame", nil, f)
+    tabBar:SetPoint("TOPLEFT",  header, "BOTTOMLEFT",  0, -4)
+    tabBar:SetPoint("TOPRIGHT", header, "BOTTOMRIGHT", 0, -4)
+    tabBar:SetHeight(22)
+    tabBar:Hide()
+    f.tabBar = tabBar
+
+    local function makeTab(id, label, xOffset)
+        local btn = CreateFrame("Button", nil, tabBar, "BackdropTemplate")
+        btn:SetPoint("LEFT", xOffset, 0)
+        btn:SetSize(120, 22)
+        btn:SetBackdrop({
+            bgFile   = "Interface\\Buttons\\WHITE8x8",
+            edgeFile = "Interface\\Buttons\\WHITE8x8",
+            edgeSize = 1,
+            insets   = { left = 0, right = 0, top = 0, bottom = 0 },
+        })
+        btn:SetBackdropColor(0.10, 0.10, 0.13, 1)
+        btn:SetBackdropBorderColor(0.22, 0.22, 0.27, 1)
+
+        local txt = btn:CreateFontString(nil, "OVERLAY", ns.Theme.Fonts.body)
+        txt:SetAllPoints(btn)
+        txt:SetJustifyH("CENTER")
+        txt:SetText(label)
+        btn.text = txt
+        btn.tabID = id
+
+        -- Accent underline shown only for the active tab
+        local underline = btn:CreateTexture(nil, "OVERLAY")
+        underline:SetPoint("BOTTOMLEFT",  1, 0)
+        underline:SetPoint("BOTTOMRIGHT", -1, 0)
+        underline:SetHeight(2)
+        underline:SetColorTexture(0.2, 1, 0.6, 1)
+        underline:Hide()
+        btn.underline = underline
+
+        btn:SetScript("OnClick", function()
+            ns.MainFrame:SetActiveTab(id)
+        end)
+
+        btn:SetScript("OnEnter", function(b)
+            b:SetBackdropColor(0.18, 0.18, 0.22, 1)
+        end)
+
+        btn:SetScript("OnLeave", function(b)
+            if ns.MainFrame.activeTab == id then
+                b:SetBackdropColor(0.18, 0.18, 0.22, 1)
+            else
+                b:SetBackdropColor(0.10, 0.10, 0.13, 1)
+            end
+        end)
+
+        return btn
+    end
+
+    f.tabSteps    = makeTab("steps",    ns:Str("TAB_STEPS"),    8)
+    f.tabShopping = makeTab("shopping", ns:Str("TAB_SHOPPING"), 132)
+
     local close = CreateFrame("Button", nil, titleBar, "UIPanelCloseButton")
     close:SetPoint("RIGHT", -2, 0)
     close:SetScript("OnClick", function() f:Hide() end)   -- ← add this
@@ -80,7 +140,7 @@ function MainFrame:Init()
 
     -- ── Scroll frame (shown when a guide is loaded) ────────────────────────
     local scroll = CreateFrame("ScrollFrame", nil, f, "UIPanelScrollFrameTemplate")
-    scroll:SetPoint("TOPLEFT", header, "BOTTOMLEFT", 8, -8)
+    scroll:SetPoint("TOPLEFT", tabBar, "BOTTOMLEFT", 8, -4)
     scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -30, 8)
     scroll:Hide()
     f.scroll = scroll
@@ -108,9 +168,11 @@ function MainFrame:ShowGuide(headerText)
     local f = self.frame or self:Init()
     f.body:Hide()
     f.header:Show()
+    f.tabBar:Show()
     f.headerText:SetText(headerText or "")
     f.scroll:Show()
-    self:RefreshRows()
+    self.activeTab = self.activeTab or "steps"
+    self:SetActiveTab(self.activeTab)
     f:Show()
 end
 
@@ -120,17 +182,15 @@ function MainFrame:HideGuide()
     local f = self.frame
     if not f then return end
     f.header:Hide()
+    f.tabBar:Hide()
     f.scroll:Hide()
     f.body:Show()
 end
 
---- Repopulate the scroll view from the currently loaded guide.
+--- Repopulate the scroll view with the crafting step list.
 function MainFrame:RefreshRows()
     local f = self.frame
     if not f then return end
-    if not ns.CraftingGuide or not ns.CraftingGuide.current then
-        return
-    end
 
     local state = ns.CraftingGuide and ns.CraftingGuide.current
     if not state then
@@ -138,24 +198,19 @@ function MainFrame:RefreshRows()
         return
     end
 
-    local steps = state.guide.steps
+    self:ClearRows()
+
+    local steps   = state.guide.steps
     local content = f.scrollContent
 
     content:SetWidth(f.scroll:GetWidth() or 400)
     content:SetHeight(math.max(#steps * (ROW_HEIGHT + ROW_GAP), 1))
 
     for i, step in ipairs(steps) do
-        local row = self.rows[i]
-        if not row then
-            row = ns.StepRow:Create(content)
-            self.rows[i] = row
-        end
-
+        local row = ns.StepRow:Create(content)
         local y = -((i - 1) * (ROW_HEIGHT + ROW_GAP))
-        row:ClearAllPoints()
         row:SetPoint("TOPLEFT",  0, y)
         row:SetPoint("TOPRIGHT", 0, y)
-        row:Show()
 
         local rowState = "future"
         if i < (state.currentStepIndex or 0) then
@@ -165,11 +220,7 @@ function MainFrame:RefreshRows()
         end
 
         row:SetStep(step, i, rowState)
-    end
-
-    -- Hide leftovers from a previous, longer guide
-    for i = #steps + 1, #self.rows do
-        self.rows[i]:Hide()
+        self.rows[i] = row
     end
 end
 
@@ -196,4 +247,87 @@ function MainFrame:RestorePosition()
     f:SetPoint(win.point or "CENTER", UIParent, win.point or "CENTER", win.x or 0, win.y or 0)
     if win.width  then f:SetWidth(win.width)   end
     if win.height then f:SetHeight(win.height) end
+end
+
+--- Switch which tab is active.
+-- @param id  "steps" | "shopping"
+function MainFrame:SetActiveTab(id)
+    local f = self.frame
+    if not f then return end
+    self.activeTab = id or "steps"
+
+    local accent = ns.Theme.Colors.accent
+    local muted  = ns.Theme.Colors.textMuted
+
+    local function paint(btn, active)
+        if active then
+            btn.text:SetTextColor(accent[1], accent[2], accent[3], accent[4])
+            btn:SetBackdropColor(0.18, 0.18, 0.22, 1)
+            btn:SetBackdropBorderColor(accent[1], accent[2], accent[3], 1)
+            btn.underline:Show()
+        else
+            btn.text:SetTextColor(muted[1], muted[2], muted[3], muted[4])
+            btn:SetBackdropColor(0.10, 0.10, 0.13, 1)
+            btn:SetBackdropBorderColor(0.22, 0.22, 0.27, 1)
+            btn.underline:Hide()
+        end
+    end
+
+    paint(f.tabSteps,    self.activeTab == "steps")
+    paint(f.tabShopping, self.activeTab == "shopping")
+
+    if self.activeTab == "shopping" then
+        self:RenderShopping()
+    else
+        self:RenderSteps()
+    end
+end
+
+--- Render the crafting step list.
+function MainFrame:RenderSteps()
+    self:RefreshRows()
+end
+
+--- Render the shopping list.
+function MainFrame:RenderShopping()
+    local f = self.frame
+    if not f then return end
+
+    local state = ns.CraftingGuide and ns.CraftingGuide.current
+    if not state then
+        self:HideGuide()
+        return
+    end
+
+    self:ClearRows()
+
+    local list    = ns.ShoppingList:Generate(state)
+    local content = f.scrollContent
+
+    content:SetWidth(f.scroll:GetWidth() or 400)
+    content:SetHeight(math.max(#list * (28 + 4), 1))
+
+    for i, mat in ipairs(list) do
+        local row = ns.ShoppingRow:Create(content)
+        row:SetPoint("TOPLEFT",  0, -((i - 1) * (28 + 4)))
+        row:SetPoint("TOPRIGHT", 0, -((i - 1) * (28 + 4)))
+        row:SetMaterial(mat)
+        self.rows[i] = row
+    end
+
+    if #list == 0 then
+        local lbl = content:CreateFontString(nil, "OVERLAY", ns.Theme.Fonts.muted)
+        lbl:SetPoint("TOPLEFT", 8, -8)
+        lbl:SetText(ns:Str("SHOPPING_EMPTY"))
+        self.rows.emptyLabel = lbl
+    end
+end
+
+--- Detach and hide every row. Called at the start of each render.
+function MainFrame:ClearRows()
+    for _, row in ipairs(self.rows) do
+        row:Hide()
+        row:SetParent(nil)
+    end
+    self.rows = {}
 end
