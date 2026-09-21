@@ -61,6 +61,9 @@ Check items off as you complete them.
 - [ ] Add each locale file to `Trailhead.toc` in order (enUS first)
 - [ ] Verify fallback works with `/console cvar_locale`
 
+## 💤 Deferred / Future
+- Gathering routes + waypoint navigation (removed in v0.3.x, may return)
+
 ## 🚦 Pre-Release
 
 - [ ] `luacheck src/ data/ locales/` passes with zero warnings

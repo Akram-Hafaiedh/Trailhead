@@ -9,11 +9,8 @@ local function printHelp()
     ns:Print(ns:Str("SLASH_HELP_HEADER"))
     ns:Print(ns:Str("SLASH_HELP_TOGGLE"))
     ns:Print(ns:Str("SLASH_HELP_CRAFT"))
-    ns:Print(ns:Str("SLASH_HELP_FARM"))
-    ns:Print(ns:Str("SLASH_HELP_ROUTE"))
     ns:Print(ns:Str("SLASH_HELP_OPTIONS"))
     ns:Print(ns:Str("SLASH_HELP_RESET"))
-    ns:Print(ns:Str("SLASH_HELP_RESET_POS"))
     ns:Print(ns:Str("SLASH_HELP_VERSION"))
     ns:Print(ns:Str("SLASH_HELP_HELP"))
 end
@@ -38,14 +35,6 @@ local function handleCommand(msg)
         else
             ns.CraftingGuide:Load(rest)
         end
-
-    elseif cmd == "farm" then
-        -- TODO(phase-3): load gathering route by name (rest)
-        ns:Print("Gathering routes arrive in Phase 3. (requested: " .. tostring(rest) .. ")")
-
-    elseif cmd == "route" then
-        -- TODO(phase-3): start/stop route overlay
-        ns:Print("Route overlay arrives in Phase 3.")
 
     elseif cmd == "options" then
         -- TODO(phase-6): open options panel

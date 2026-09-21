@@ -34,23 +34,7 @@ A living document. Check items off as they ship.
 
 ---
 
-## 🌿 Phase 3 — Gathering Routes (v0.3.x)
-> *Goal: Guide the player through optimized farming loops in the open world.*
-
-- [ ] Route data schema (`zone`, `waypoints`, `nodeTypes`, `estimatedYield`)
-- [ ] `Mining_Midnight.lua` route data (proof of concept)
-- [ ] Route list UI (scrollable, grouped by zone)
-- [ ] Waypoint storage & retrieval via `C_Map` / `C_Navigation`
-- [ ] In-world arrow overlay pointing to next waypoint
-- [ ] Auto-advance to next waypoint on arrival
-- [ ] Node counter (nodes hit this session)
-- [ ] Yield estimator (nodes/hr, gold/hr if AH data available)
-- [ ] TomTom integration (soft dependency)
-- [ ] Release: `v0.3.0-beta`
-
----
-
-## 🛒 Phase 4 — Shopping List (v0.4.x)
+## 🛒 Phase 3 — Shopping List (v0.4.x)
 > *Goal: Never alt-tab to a spreadsheet again.*
 
 - [ ] Aggregate materials across all remaining crafting steps
@@ -62,7 +46,7 @@ A living document. Check items off as they ship.
 
 ---
 
-## 🧠 Phase 5 — Knowledge & Specialization (v0.5.x)
+## 🧠 Phase 4 — Knowledge & Specialization (v0.5.x)
 > *Goal: Guide the player beyond just skill points.*
 
 - [ ] Knowledge Point source tracker
@@ -73,7 +57,7 @@ A living document. Check items off as they ship.
 
 ---
 
-## 🎨 Phase 6 — Polish & Scale (v1.0.0)
+## 🎨 Phase 5 — Polish & Scale (v1.0.0)
 > *Goal: Ship-quality release.*
 
 - [ ] Localization: deDE, frFR, esES, ruRU, zhCN, koKR, ptBR
@@ -93,3 +77,12 @@ A living document. Check items off as they ship.
 - Route sharing via import strings
 - Bag addon integration for farming (auto-sell greys, restock)
 - Mobile-friendly guide viewer (out of game)
+
+
+### Changed
+- **Scope:** Removed gathering routes and waypoint navigation. Trailhead
+  is now a focused crafting guide addon. Gathering may return in a future
+  expansion of the project if there's demand.
+- Removed `/th farm` and `/th route` slash commands.
+- Deleted files: `data/gathering/`, `data/routes/`, `GatheringGuide.lua`,
+  `RouteOverlay.lua`, `RouteRow.lua`.

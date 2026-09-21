@@ -64,6 +64,7 @@ function MainFrame:Init()
 
     local close = CreateFrame("Button", nil, titleBar, "UIPanelCloseButton")
     close:SetPoint("RIGHT", -2, 0)
+    close:SetScript("OnClick", function() f:Hide() end)   -- ← add this
     f.closeButton = close
 
     -- ── Placeholder body (shown when no guide is loaded) ───────────────────
@@ -113,6 +114,7 @@ function MainFrame:ShowGuide(headerText)
     f:Show()
 end
 
+
 --- Return to the placeholder view.
 function MainFrame:HideGuide()
     local f = self.frame
@@ -126,6 +128,9 @@ end
 function MainFrame:RefreshRows()
     local f = self.frame
     if not f then return end
+    if not ns.CraftingGuide or not ns.CraftingGuide.current then
+        return
+    end
 
     local state = ns.CraftingGuide and ns.CraftingGuide.current
     if not state then

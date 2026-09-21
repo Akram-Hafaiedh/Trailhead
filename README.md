@@ -40,8 +40,6 @@ It's designed to be:
 
 ### Coming Soon
 - [ ] **Crafting:** step-by-step leveling guides for all 8 crafting professions
-- [ ] **Gathering:** optimized farming routes for Mining, Herbalism, and Skinning
-- [ ] **Route overlay:** in-world arrow + node tracking while farming
 - [ ] Live shopping list with material counts
 - [ ] Knowledge Point tracker
 - [ ] Specialization tree advisor
@@ -102,11 +100,9 @@ If you see `Trailhead/Trailhead-x.y.z/Trailhead.toc`, you extracted one level to
 |---------|-------------|
 | `/th` | Toggle the main Trailhead window |
 | `/th craft <profession>` | Load a crafting guide (e.g., `/th craft tailoring`) |
-| `/th farm <profession>` | Load a gathering route (e.g., `/th farm mining`) |
-| `/th route start` | Begin following the active farming route |
-| `/th route stop` | Stop the route overlay |
 | `/th options` | Open the options panel |
-| `/th reset` | Reset guide/route progress |
+| `/th reset` | Reset guide progress |
+| `/th help` | Show available commands |
 
 *`/trail` works as an alias for `/th` if you prefer typing it out.*
 

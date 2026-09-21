@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Saved variables container (`src/core/Database.lua`).
 - Slash command handler with `/th` toggle.
 - Gathering route data schema and `RouteOverlay` feature stub.
-- `data/crafting/`, `data/gathering/`, and `data/routes/` subfolders.
+- `data/crafting/` — Crafting profession guide data
 
 ### Changed
 - *(nothing yet)*

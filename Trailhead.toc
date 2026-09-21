@@ -23,12 +23,10 @@ src\core\Database.lua
 src\ui\Theme.lua
 src\ui\MainFrame.lua
 src\ui\StepRow.lua
-src\ui\RouteRow.lua
 
 # Features
 src\features\CraftingGuide.lua
 src\features\ShoppingList.lua
-src\features\RouteOverlay.lua
 
 # Data
 data\init.lua

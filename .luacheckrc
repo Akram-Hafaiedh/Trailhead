@@ -23,7 +23,6 @@ read_globals = {
     "UISpecialFrames",
     "tinsert",
 }
-
 ignore = {
     "212", -- unused argument
 }
